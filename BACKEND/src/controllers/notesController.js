@@ -1,7 +1,7 @@
 import Note from "../model/Note.js";
 
 const protectedNoteIds = [
-    "6a9653c700466f9abd2a30b2",
+    "6a97ec24dad3796bfaa9da6e",
     "6a96d48e73c0b980c2525e14",
     "6a96d31648b3a7c73645b7f5",
 ];
