@@ -2,7 +2,7 @@
 
 <p align="center">
   🚀 <strong>Production Link:</strong>
-  <a href="https://mern-jotly.onrender.com/">https://mern-jotly.onrender.com/</a>
+  <a href="https://jotly-rcx5.onrender.com/">https://jotly-rcx5.onrender.com/</a>
 </p>
 
 > ⚠️ **Note:** The app is hosted on Render's **free plan**. If the app doesn't load immediately, please wait **1–2 minutes** for the server to wake up. After it starts, the application should work normally.
