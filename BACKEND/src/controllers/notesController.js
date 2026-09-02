@@ -1,5 +1,12 @@
 import Note from "../model/Note.js";
 
+const protectedNoteIds = [
+    "6a9653c700466f9abd2a30b2",
+    "6a96d48e73c0b980c2525e14",
+    "6a96d31648b3a7c73645b7f5",
+];
+const isProtectedNote = (id) => protectedNoteIds.includes(id.toString());
+
 //get
 export async function getAllNotes(_, res){
     // res.status(200).send("You just fetched your notes");
@@ -43,7 +50,17 @@ export async function createNote(req, res){
 //put
 export async function updateNote(req, res){
     // res.status(200).send("Note updated successfully");
+
     try {
+
+        // Not to delete welcome notes
+        if (isProtectedNote(req.params.id)) {
+          console.log("This note can only be updated by admin:", req.params.id);
+          return res.status(403).json({
+            message: "This note cannot be updated."
+          });
+        }
+
         const {title, content} = req.body;
         const updatedNote = await Note.findByIdAndUpdate(req.params.id, {title, content}, {new: true});
 
@@ -61,6 +78,15 @@ export async function updateNote(req, res){
 export async function deleteNote(req, res){
    //res.status(200).send("Note deleted successfully");
    try {
+
+        // Not to delete welcome notes
+        if (isProtectedNote(req.params.id)) {
+          console.log("This note can only be deleted by admin:", req.params.id);
+          return res.status(403).json({
+            message: "This note cannot be deleted."
+          });
+        }
+
         const deletedNote = await Note.findByIdAndDelete(req.params.id);
 
         //galat id se request aayi then

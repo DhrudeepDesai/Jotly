@@ -30,7 +30,20 @@ const NoteDetailPage = () => {
     fetchNote();
   }, [id]);
 
+  const protectedIds = [
+    "6a9653c700466f9abd2a30b2",
+    "6a96d48e73c0b980c2525e14",
+    "6a96d31648b3a7c73645b7f5",
+  ];
+
   const handleDelete = async () => {
+
+    // Not to delete welcome notes
+    if (protectedIds.includes(id)) {
+      toast.error("This can only be deleted by the admin");
+      return;
+    }
+
     if (!window.confirm("Are you sure you want to delete this note?")) return;
 
     try {
@@ -39,11 +52,22 @@ const NoteDetailPage = () => {
       navigate("/");
     } catch (error) {
       console.log("FRONTEND -> src -> pages -> NoteDetailPage  ,Error deleting the note:", error);
-      toast.error("Failed to delete note");
+      if (protectedIds.includes(id)) {
+        toast.error("This can only be deleted by the admin");
+      } else {
+        toast.error("Failed to delete note");
+      }
     }
   };
 
   const handleSave = async () => {
+
+    // Not to update welcome notes
+    if (protectedIds.includes(id)) {
+      toast.error("This can only be updated by the admin");
+      return;
+    }
+
     if (!note.title.trim() || !note.content.trim()) {
       toast.error("Please add a title or content");
       return;
