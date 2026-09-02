@@ -10,7 +10,7 @@ const NoteCard = ({ note, setNotes }) => {
 
     // Not to delete welcome notes
     const protectedIds = [
-    "6a97ec24dad3796bfaa9da6e",
+    "6a97edcfad739ff9fe91491e",
     "6a96d48e73c0b980c2525e14",
     "6a96d31648b3a7c73645b7f5",
     ];
